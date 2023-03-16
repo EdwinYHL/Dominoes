@@ -1,28 +1,31 @@
-﻿class Program
+﻿class Domino
 {
-    public readonly struct Domino
-{
-    private readonly int num;
-    private readonly int den;
 
-    public Domino(int numerator, int denominator)
+    private int num;
+    private int den;
+    public Domino(int num, int den)
     {
-
-        num = numerator;
-        den = denominator;
+        this.num = num;
+        this.den = den;
+    }  
+    public static Domino operator + (Domino a, Domino b)
+    {
+        int num= a.num+a.den;
+        int den=b.num + b.den;
+        return new Domino(num,den);
     }
-    
-        public static Domino operator +(Domino a, Domino b)
-        => new Domino(a.num+b.den+b.num+b.num);
-       
-    public override string ToString() => $"{num} / {den}";
+    public void imprime()
+    {
+        Console.WriteLine(num+den);
+    }
  }
-
-
+ internal class Program
+ {
     private static void Main(string[] args)
     {
-        var d1 = new Domino(0, 1);
-        var d2 = new Domino(2, 3);
-         Console.WriteLine(d1 + d2);  
+        Domino a = new Domino(0, 1);
+        Domino b = new Domino(2, 3);
+        Domino total = a+b;
+        total.imprime();
     }
-}
+ }
